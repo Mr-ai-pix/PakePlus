@@ -1,66 +1,83 @@
 {
-    "$schema": "https://schema.tauri.app/config/2",
-    "productName": "PakePlus",
-    "version": "../package.json",
-    "identifier": "com.pakeplus.app",
-    "build": {
-        "beforeDevCommand": "pnpm dev",
-        "devUrl": "http://localhost:1420",
-        "beforeBuildCommand": "pnpm build",
-        "frontendDist": "../dist"
+    "package": {
+        "productName": "GKADcdc",
+        "version": "0.0.1"
     },
-    "app": {
-        "security": {
-            "assetProtocol": {
-                "enable": true,
-                "scope": {
-                    "allow": [
-                        "$APPDATA/assets/**",
-                        "$APPDATA/**",
-                        "$DOWNLOAD/**",
-                        "$HOME/**",
-                        "$LOCALAPPDATA/**",
-                        "$RESOURCE/../**",
-                        "$TEMP/**",
-                        "asset://localhost/**"
-                    ],
-                    "scope": [
-                        "$APPDATA/**",
-                        "$RESOURCE/../**",
-                        "**",
-                        "asset://localhost/**"
-                    ],
-                    "enable": true
-                }
+    "tauri": {
+        "allowlist": {
+            "all": false,
+            "path": {
+                "all": true
             },
-            "csp": "default-src 'self' asset: 'unsafe-inline' 'unsafe-eval' ipc: http://ipc.localhost; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; connect-src 'self' ipc://localhost https://api.github.com; img-src 'self' https://avatars.githubusercontent.com https://www.googletagmanager.com asset: http://asset.localhost blob: data: http://asset.localhost; font-src 'self' asset: http://localhost data:;",
-            "dangerousDisableAssetCspModification": true
-        },
-        "withGlobalTauri": true
-    },
-    "bundle": {
-        "active": true,
-        "targets": "all",
-        "resources": ["./data/*"],
-        "createUpdaterArtifacts": true,
-        "icon": [
-            "icons/32x32.png",
-            "icons/128x128.png",
-            "icons/128x128@2x.png",
-            "icons/icon.icns",
-            "icons/icon.ico"
-        ]
-    },
-    "plugins": {
-        "updater": {
-            "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEI0MkI3NDVCOUM2NDE1QTgKUldTb0ZXU2NXM1FydEsrN29Edjg2c0kxZmk1YWpRa3ZUMjE1S2NLeGVFRkJRWW1SSnhXQ2F3S0EK",
-            "endpoints": [
-                "https://gh-proxy.com/github.com/Sjj1024/PakePlus/releases/latest/download/ppupdate.json",
-                "https://files.pakeplus.com/ppupdate.json"
-            ],
-            "windows": {
-                "installMode": "passive"
+            "fs": {
+                "all": true,
+                "readFile": true,
+                "writeFile": true,
+                "readDir": true,
+                "copyFile": true,
+                "createDir": true,
+                "removeDir": true,
+                "removeFile": true,
+                "renameFile": true,
+                "exists": true,
+                "scope": [
+                    "$APPDATA/*",
+                    "$APPDATA/**/*",
+                    "$APPDATA/assets/*",
+                    "$DOWNLOAD/*"
+                ]
+            },
+            "http": {
+                "all": true
+            },
+            "dialog": {
+                "all": true,
+                "ask": true,
+                "confirm": true,
+                "message": true,
+                "open": true,
+                "save": true
+            },
+            "protocol": {
+                "all": true,
+                "asset": true,
+                "assetScope": [
+                    "$APPDATA/*",
+                    "$APPDATA/**/*",
+                    "$APPDATA/assets/*",
+                    "$DOWNLOAD/*"
+                ]
+            },
+            "shell": {
+                "all": false,
+                "open": true
+            },
+            "clipboard": {
+                "all": true,
+                "writeText": true,
+                "readText": true
+            },
+            "window": {
+                "all": true,
+                "create": true,
+                "center": true,
+                "setResizable": true
             }
+        },
+        "security": {
+            "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' asset://localhost data:; font-src 'self' asset://localhost data:; asset: https://asset.localhost"
+        },
+        "bundle": {
+            "active": true,
+            "targets": "all",
+            "identifier": "com.pakeplus.desktop",
+            "icon": [
+                "icons/32x32.png",
+                "icons/128x128.png",
+                "icons/128x128@2x.png",
+                "icons/icon.icns",
+                "icons/icon.ico"
+            ]
         }
     }
 }
